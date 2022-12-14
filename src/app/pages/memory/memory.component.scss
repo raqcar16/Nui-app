@@ -1,0 +1,21 @@
+mat-card{
+    margin-top: 2%;
+}
+
+.parent {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.child {
+    flex: 1 0 15%;
+    /* explanation below */
+    margin: 5px;
+    height: 100px;
+  
+}
+
+.child:active {
+    background-color: rgb(68, 133, 231);
+    
+}
