@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "nui-logopedia": {
+      "hosting": {
+        "nui-app": [
+          "nui-logopedia"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "nui-logopedia"
+  }
+}

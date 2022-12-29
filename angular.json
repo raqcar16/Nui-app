@@ -111,6 +111,16 @@
               "src/**/*.html"
             ]
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "nui-app:build:production",
+            "firebaseProject": "nui-logopedia",
+            "firebaseHostingSite": "nui-logopedia"
+          }
         }
       }
     }
