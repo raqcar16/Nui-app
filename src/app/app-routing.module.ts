@@ -9,7 +9,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'home', component: HomeComponent },
   { path: 'registro', component: RegistroComponent },
-  { path: 'memory', component: MemoryComponent },
+  { path: 'memory/:nivel', component: MemoryComponent },
   { path: '', component: HomeComponent },
 ];
 

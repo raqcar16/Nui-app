@@ -1,103 +1,111 @@
+import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Carta } from '../../interface/carta';
-
+import { MemoryService } from '../../services/memory.service';
+import Swal from 'sweetalert2'
 @Component({
   selector: 'app-memory',
   templateUrl: './memory.component.html',
   styleUrls: ['./memory.component.scss'],
+  animations: [
+    trigger('cardFlip', [
+      state('default', style({
+        transform: 'none'
+      })),
+      state('descubierta', style({
+        transform: 'rotateY(180deg)'
+      })),
+      transition('cubierta => descubierta', [
+        animate('400ms')
+      ]),
+      transition('descubierta => cubierta', [
+        animate('200ms')
+      ])
+    ])
+  ]
 })
 export class MemoryComponent implements OnInit {
-  carta1: Carta = {
-    silaba: 'La',
-    seleccionada: false,
-  };
-  carta2: Carta = {
-    silaba: 'Le',
-    seleccionada: false,
-  };
-  carta3: Carta = {
-    silaba: 'Li',
-    seleccionada: false,
-  };
-  carta4: Carta = {
-    silaba: 'Lo',
-    seleccionada: false,
-  };
-  carta5: Carta = {
-    silaba: 'Lu',
-    seleccionada: false,
-  };
 
-  carta6: Carta = {
-    silaba: 'La',
-    seleccionada: false,
-  };
-  carta7: Carta = {
-    silaba: 'Le',
-    seleccionada: false,
-  };
-  carta8: Carta = {
-    silaba: 'Li',
-    seleccionada: false,
-  };
-  carta9: Carta = {
-    silaba: 'Lo',
-    seleccionada: false,
-  };
-  carta10: Carta = {
-    silaba: 'Lu',
-    seleccionada: false,
-  };
   clicked = false;
-
-  conjunto: Carta[] = [
-    this.carta1,
-    this.carta2,
-    this.carta3,
-    this.carta4,
-    this.carta5,
-    this.carta6,
-    this.carta7,
-    this.carta8,
-    this.carta9,
-    this.carta10,
-  ];
+  conjunto: Carta[] = [];
 
   cartasSeleccionadas: Carta[] = [];
-
-  constructor() {}
+  silabas: string[]=[];
+  nivel:any;
+  constructor(private memoryService: MemoryService, private activatedRoute:ActivatedRoute) {}
 
   async ngOnInit() {
+    this.nivel = this.activatedRoute.snapshot.paramMap.get('nivel');
+    console.log(this.nivel)
+    await this.getSilabas();
     this.conjunto.sort(this.barajar);
   }
 
-  barajar(a: any, b: any) {
+  barajar() {
     return 0.5 - Math.random();
   }
-  clickCarta(carta: Carta) {
-    if (carta.seleccionada === true) {
+  async clickCarta(carta: Carta) {
+    if (carta.estado === 'descubierta') {
     } else {
-      carta.seleccionada = true;
+      carta.estado = 'descubierta';
       this.cartasSeleccionadas.push(carta);
       if (this.cartasSeleccionadas.length === 2) {
+        await this.sleep(500);
         this.comparar();
       }
     }
   }
 
-  comparar() {
+ comparar() {
     const carta1 = this.cartasSeleccionadas[0];
     const carta2 = this.cartasSeleccionadas[1];
     if (carta1.silaba === carta2.silaba) {
-      window.alert('Correcto');
+
+      Swal.fire({
+        title: '¡Bien hecho!',
+        text: 'Las cartas coinciden',
+        icon: 'success',
+        confirmButtonText: 'Seguir'
+      })
       this.cartasSeleccionadas = [];
     } else {
-      this.cartasSeleccionadas[0].seleccionada = false;
-      this.cartasSeleccionadas[1].seleccionada = false;
+      this.cartasSeleccionadas[0].estado = 'cubierta';
+      this.cartasSeleccionadas[1].estado = 'cubierta';
       this.cartasSeleccionadas = [];
-      window.alert('Las cartas no coinciden');
+
+      Swal.fire({
+        title: 'Oh, no',
+        text: 'Las cartas no coinciden',
+        icon: 'error',
+        confirmButtonText: 'Volver a intentar'
+      })
     }
   }
+
+  async getSilabas(){
+    this.silabas = await this.memoryService.getSilabas(this.nivel);
+    for (let silaba of this.silabas){
+      const carta: Carta = {
+        silaba: silaba,
+        estado: 'cubierta'
+      }
+      this.conjunto.push(carta)
+    }
+    for (let silaba of this.silabas){
+      const carta: Carta = {
+        silaba: silaba,
+        estado: 'cubierta'
+      }
+      this.conjunto.push(carta)
+    }
+
+  }
+
+  sleep(ms = 0) {
+    return new Promise((r) => setTimeout(r, ms));
+  }
+
 
   //MEMORY2 mayus minus
   /*

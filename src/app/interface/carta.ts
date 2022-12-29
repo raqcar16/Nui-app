@@ -1,4 +1,4 @@
 export interface Carta {
   silaba: string;
-  seleccionada?: boolean;
+  estado: 'cubierta' | 'descubierta';
 }

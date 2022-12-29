@@ -1,21 +1,11 @@
-<div fxLayout="row" fxLayoutAlign="space-between center" class="parent">
-  <mat-card
-    *ngFor="let carta of conjunto"
-    class="example-card"
-    class="child"
-    (click)="clickCarta(carta)"
-  >
-    <mat-card-header>
-      <div mat-card-avatar class="example-header-image"></div>
-      <mat-card-title>Nui-app</mat-card-title>
-    </mat-card-header>
+<div fxLayout="row" class="parent">
+  <div  *ngFor="let carta of conjunto" class="card" (click)="clickCarta(carta)" [@cardFlip]="carta.estado">
+    <div class="face back">
+      <img src="assets/trasera.jpeg">
+    </div>
+    <div class="face front">
+     {{ carta.silaba }}
+    </div>
+</div>
 
-    <mat-card-content *ngIf="carta.seleccionada">
-      <p>{{ carta.silaba }}</p>
-    </mat-card-content>
-
-    <mat-card-content *ngIf="!carta.seleccionada">
-      <p>REVERSO DE LA CARTA</p>
-    </mat-card-content>
-  </mat-card>
 </div>
