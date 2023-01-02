@@ -1,11 +1,15 @@
 <div fxLayout="row" class="parent">
-  <div  *ngFor="let carta of conjunto" class="card" (click)="clickCarta(carta)" [@cardFlip]="carta.estado">
+  <div
+    *ngFor="let carta of conjunto"
+    class="card"
+    (click)="clickCarta(carta)"
+    [@cardFlip]="carta.estado"
+  >
     <div class="face back">
-      <img src="assets/trasera.jpeg">
+      <img src="assets/trasera.jpeg" />
     </div>
     <div class="face front">
-     {{ carta.silaba }}
+      {{ carta.silaba }}
     </div>
-</div>
-
+  </div>
 </div>

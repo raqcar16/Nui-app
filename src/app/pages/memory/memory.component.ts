@@ -37,7 +37,6 @@ export class MemoryComponent implements OnInit {
 
   async ngOnInit() {
     this.nivel = this.activatedRoute.snapshot.paramMap.get('nivel');
-    console.log(this.nivel)
     await this.getSilabas();
     this.conjunto.sort(this.barajar);
   }
@@ -61,25 +60,11 @@ export class MemoryComponent implements OnInit {
     const carta1 = this.cartasSeleccionadas[0];
     const carta2 = this.cartasSeleccionadas[1];
     if (carta1.silaba === carta2.silaba) {
-
-      Swal.fire({
-        title: '¡Bien hecho!',
-        text: 'Las cartas coinciden',
-        icon: 'success',
-        confirmButtonText: 'Seguir'
-      })
       this.cartasSeleccionadas = [];
     } else {
       this.cartasSeleccionadas[0].estado = 'cubierta';
       this.cartasSeleccionadas[1].estado = 'cubierta';
       this.cartasSeleccionadas = [];
-
-      Swal.fire({
-        title: 'Oh, no',
-        text: 'Las cartas no coinciden',
-        icon: 'error',
-        confirmButtonText: 'Volver a intentar'
-      })
     }
   }
 
