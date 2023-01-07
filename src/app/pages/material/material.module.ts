@@ -12,6 +12,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import {MatSidenavModule} from '@angular/material/sidenav';
 
 @NgModule({
   declarations: [],
@@ -26,7 +27,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     MatTableModule,
     MatPaginatorModule,
     MatDialogModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatSidenavModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

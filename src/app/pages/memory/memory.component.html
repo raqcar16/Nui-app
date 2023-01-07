@@ -1,3 +1,4 @@
+<div class="content">
 <div fxLayout="row" class="parent">
   <div
     *ngFor="let carta of conjunto"
@@ -5,11 +6,16 @@
     (click)="clickCarta(carta)"
     [@cardFlip]="carta.estado"
   >
+
     <div class="face back">
-      <img src="assets/trasera.jpeg" />
+      <div class="rectangle"></div>
+      <img src="assets/nuiColor.png" />
     </div>
     <div class="face front">
+      <p>
       {{ carta.silaba }}
+    </p>
     </div>
   </div>
+</div>
 </div>

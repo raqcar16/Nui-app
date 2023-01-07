@@ -61,6 +61,10 @@ export class MemoryComponent implements OnInit {
     const carta2 = this.cartasSeleccionadas[1];
     if (carta1.silaba === carta2.silaba) {
       this.cartasSeleccionadas = [];
+      let audio = new Audio();
+      audio.src = "../../assets/sounds/check.mp3";
+      audio.load();
+      audio.play();
     } else {
       this.cartasSeleccionadas[0].estado = 'cubierta';
       this.cartasSeleccionadas[1].estado = 'cubierta';

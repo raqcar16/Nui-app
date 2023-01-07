@@ -8,8 +8,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { RegistroComponent } from './pages/registro/registro.component';
 import { HomeComponent } from './pages/home/home.component';
 import { MemoryComponent } from './pages/memory/memory.component';
-import { NavbarComponent } from './shared/navbar/navbar.component';
-import { FootbarComponent } from './shared/footbar/footbar.component';
+
 import { MaterialModule } from './pages/material/material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { HttpClientModule } from '@angular/common/http';
@@ -21,8 +20,7 @@ import { HttpClientModule } from '@angular/common/http';
     RegistroComponent,
     HomeComponent,
     MemoryComponent,
-    NavbarComponent,
-    FootbarComponent,
+
   ],
   imports: [
     BrowserModule,

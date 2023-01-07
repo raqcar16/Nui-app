@@ -1,7 +1,17 @@
 <div class="container">
-  <app-navbar></app-navbar>
-  <content>
+  <div class="header">
+    <mat-toolbar>
+      <span></span>
+      <span class="example-spacer"></span>
+      <button mat-icon-button (click)="goHome()">
+        <mat-icon>home</mat-icon>
+      </button>
+    </mat-toolbar>
+  </div>
+  <div class="content">
     <router-outlet></router-outlet>
-  </content>
-  <app-footbar></app-footbar>
+  </div>
+  <div class="footer">
+    <h2>footer</h2>
+  </div>
 </div>

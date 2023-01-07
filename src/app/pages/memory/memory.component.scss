@@ -14,13 +14,16 @@ mat-card{
 }
 
 .card {
+  margin-top: 3%;
+  margin-left: 3%;
   box-shadow: 10px 10px 43px -18px rgba(0, 0, 0, 0.75);
   border-radius: 5px;
-  height: 300px;
+  height: 250px;
   width: 200px;
   cursor: pointer;
   position: relative;
   transform-style: preserve-3d;
+  background-color: #9cc3f69a;
 }
 
 .face {
@@ -41,8 +44,35 @@ mat-card{
 
 .front {
   transform: rotateY(180deg);
-  font-family: tiresias;
-  font-size: xx-large;
+
+
+  >p {
+    font-family: tiresias;
+    font-size: xx-large;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+
+  }
 }
 
+.content{
+  width: 100%;
+  height: 100vh;
 
+}
+
+.rectangle {
+  height: 200px;
+  width: 160px;
+  border:2px solid;
+  border-color: rgb(111, 131, 198);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
